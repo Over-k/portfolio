@@ -1,0 +1,51 @@
+---
+import { SITE } from "../config";
+import "../style/base.css";
+import Header from "../components/Header.astro";
+const {
+  title = SITE.title,
+  author = SITE.author,
+  description = SITE.desc,
+  ogImage = SITE.ogImage,
+} = Astro.props;
+const socialImageURL = new URL(
+  ogImage ? ogImage : SITE.ogImage,
+  Astro.url.origin
+).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- General Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageURL} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+
+    <script is:inline src="/toggle-theme.js" data-swup-ignore-script></script>
+  </head>
+  <body>
+    <Header />
+    <div class="wrapper pt-16 w-full max-w-3xl mx-auto">
+      <slot />
+    </div>
+  </body>
+</html>

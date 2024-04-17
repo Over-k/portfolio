@@ -1,0 +1,52 @@
+---
+import { ReposData } from "../constants";
+import GithubRepoCard from "./GithubRepoCard.astro";
+import LinkButton from "./LinkButton.astro";
+---
+
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="pt-8 flex flex-wrap">
+    {
+      ReposData.filter((item) => item?.description)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 6)
+        .map(({ name, html_url, description, language }) => (
+          <GithubRepoCard
+            name={name}
+            html_url={html_url}
+            description={description}
+            language={language}
+          />
+        ))
+    }
+  </div>
+  {
+    ReposData.length > 6 && (
+      <div class="flex justify-center mt-5 lg:mt-12">
+        <LinkButton
+          className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
+          href="/works"
+        >
+          View more >
+        </LinkButton>
+      </div>
+    )
+  }
+</section>
+
+<style>
+  /* ===== projects Section ===== */
+  #projects {
+    @apply mb-1 ml-1 py-12;
+  }
+
+  h2:before {
+    content: "#";
+    @apply mr-2;
+  }
+
+  h2 {
+    @apply text-lg font-bold mb-4;
+  }
+</style>

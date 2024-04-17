@@ -1,0 +1,75 @@
+---
+import { timeConverter } from "../js/time-converter";
+export interface Props {
+  title: string;
+  cover_image?: string | null;
+  url: string;
+  description?: string | null;
+  published_at?: string;
+  public_reactions_count?: number;
+  comments_count?: number;
+  reading_time_minutes?: number;
+}
+const {
+  title,
+  cover_image,
+  url,
+  description,
+  published_at,
+  public_reactions_count,
+  comments_count,
+  reading_time_minutes,
+} = Astro.props;
+---
+
+<div class="flex w-full sm:w-1/2 flex-col backgroundColor">
+  <div
+    class="rounded border-skin-fill/50 border-[1px] p-2 mb-2 ml-2 hover:bg-skin-card-muted/10 hover:scale-[1.01] transition-all"
+  >
+    <div
+      class="h-44 lg:h-52 w-auto cursor-pointer overflow-hidden rounded-t-lg"
+    >
+      <img
+        src={cover_image}
+        height={1080}
+        width={1920}
+        alt={description}
+        class="h-full w-full group-hover:scale-110 transition-all duration-300"
+      />
+    </div>
+    <div class="p-2 sm:p-3 flex flex-col">
+      <div class="flex justify-between items-center text-xs">
+        <p>{timeConverter(published_at)}</p>
+        <div class="flex items-center gap-3">
+          <p class="flex items-center gap-1">
+            <span>{public_reactions_count}</span>
+          </p>
+          {
+            comments_count && (
+              <p class="flex items-center gap-1">
+                <span>{comments_count}</span>
+              </p>
+            )
+          }
+        </div>
+      </div>
+      <a target="_blank" href={url}>
+        <p class="my-2 lg:my-3 cursor-pointer text-skin-accent">
+          {title}
+        </p>
+      </a>
+      <p class="text-xs">
+        {`${reading_time_minutes} Min Read`}
+      </p>
+      <p class="mb-4 mt-2 text-sm">
+        {description}
+      </p>
+    </div>
+  </div>
+</div>
+<style>
+  .backgroundColor {
+    background: radial-gradient(ellipse at 0% 0%, #bf398910 0, transparent 75%),
+      radial-gradient(ellipse at 30% 0%, #096bde10 0, transparent 75%);
+  }
+</style>

@@ -1,0 +1,169 @@
+---
+import { SITE } from "../config";
+import LinkButton from "../components/LinkButton.astro";
+const {
+  title = SITE.title,
+  author = SITE.author,
+  description = SITE.desc,
+  ogImage = SITE.ogImage,
+} = Astro.props;
+---
+
+<section id="hero">
+  <div class="flex flex-1 flex-col sm:pr-6">
+    <h1>👋 Hello!</h1>
+    <p>
+      <span class="text-xl"><strong>{title}</strong></span>,{description}
+    </p>
+    <p class="text-xs">
+      For more check the
+      <LinkButton
+        className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
+        href="/about"
+      >
+        About page
+      </LinkButton>
+      or
+      <LinkButton
+        className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
+        href="/terminal"
+      >
+        Terminal
+      </LinkButton>.
+    </p>
+  </div>
+  <div
+    class="code sm:w-1/2 order-1 lg:order-2 relative rounded-lg border borderColor text-2xl"
+  >
+    <div class="linear"></div>
+    <div class="px-4 lg:px-8 py-2">
+      <div class="flex flex-row space-x-2">
+        <div class="h-2 w-2 rounded-full bg-[#fa7970]"></div>
+        <div class="h-2 w-2 rounded-full bg-[#faa356]"></div>
+        <div class="h-2 w-2 rounded-full bg-[#7ce38b]"></div>
+      </div>
+    </div>
+    <div
+      class="overflow-hidden border-t-[2px] borderColor px-4 lg:px-8 py-4 lg:py-8"
+    >
+      <code class="font-mono text-xs md:text-sm lg:text-base">
+        <div class="blink">
+          <span class="mr-2 keyword">const</span>
+          <span class="mr-2 constant">coder</span>
+          <span class="mr-2 constant">=</span>
+          <span class="">{"{"}</span>
+        </div>
+        <div>
+          <span class="ml-4 lg:ml-8 mr-2">name:</span>
+          <span class="">{`'`}</span>
+          <span class="string">Over-k</span>
+          <span class="">{`',`}</span>
+        </div>
+        <div class="ml-4 lg:ml-8 mr-2">
+          <span class="">skills:</span>
+          <span class="">{`['`}</span>
+          <span class="string">JS</span>
+          <span class="">{"', '"}</span>
+          <span class="string">Python</span>
+          <span class="">{"'],"}</span>
+        </div>
+        <div>
+          <span class="ml-4 lg:ml-8 mr-2">hardWorker:</span>
+          <span class="constant">true</span>
+          <span class="">,</span>
+        </div>
+        <div>
+          <span class="ml-4 lg:ml-8 mr-2">quickLearner:</span>
+          <span class="constant">true</span>
+          <span class="">,</span>
+        </div>
+        <div>
+          <span class="ml-4 lg:ml-8 mr-2">problemSolver:</span>
+          <span class="constant">true</span>
+          <span class="">,</span>
+        </div>
+        <div>
+          <span class="ml-4 lg:ml-8 mr-2 entity">hireable:</span>
+          <span class="keyword">function</span>
+          <span class="">{"() {"}</span>
+        </div>
+        <div>
+          <span class="ml-8 lg:ml-16 mr-2 keyword">return</span>
+          <span class="">{`(`}</span>
+        </div>
+        <div>
+          <span class="ml-12 lg:ml-24 constant">this.</span>
+          <span class="mr-2">hardWorker</span>
+          <span class="keyword">&amp;&amp;</span>
+        </div>
+        <div>
+          <span class="ml-12 lg:ml-24 constant">this.</span>
+          <span class="mr-2">problemSolver</span>
+        </div>
+        <div><span class="ml-8 lg:ml-16 mr-2">{`);`}</span></div>
+        <div><span class="ml-4 lg:ml-8">{`}`}</span></div>
+        <div><span class="">{`};`}</span></div>
+      </code>
+    </div>
+  </div>
+</section>
+<style>
+  /* ===== Hero Section ===== */
+  #hero {
+    @apply sm:flex sm:flex-row sm:pb-12 sm:pt-12 flex-col items-end pb-12 pt-12;
+  }
+  #hero h1 {
+    @apply my-2 inline-block text-2xl font-bold sm:my-8 sm:text-3xl;
+  }
+  #hero .rss-link {
+    @apply mb-6;
+  }
+  #hero .rss-icon {
+    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+  }
+  #hero p {
+    @apply my-2;
+  }
+  .code {
+    background: radial-gradient(ellipse at 0% 0%, #bf398910 0, transparent 75%),
+      radial-gradient(ellipse at 30% 0%, #096bde10 0, transparent 75%);
+    font-family:
+      ui-monospace,
+      SFMono-Regular,
+      SF Mono,
+      Menlo,
+      Consolas,
+      Liberation Mono,
+      monospace;
+    box-shadow: 0px 3px 6px 0px #424a531f;
+  }
+  .linear {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(var(--color-text-base)) 20%,
+      transparent 60%
+    );
+    opacity: 0.4;
+  }
+  .borderColor {
+    border-color: var(--color-border);
+  }
+  .keyword {
+    color: var(--color-pretty-syntax-keyword);
+  }
+  .constant {
+    color: var(--color-pretty-syntax-constant);
+  }
+  .entity {
+    color: var(--color-pretty-syntax-entity);
+  }
+  .string {
+    color: var(--color-pretty-syntax-string);
+    margin: -6px;
+  }
+  .variable {
+    color: var(--color-pretty-syntax-variable);
+  }
+</style>

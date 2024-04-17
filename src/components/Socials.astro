@@ -1,0 +1,39 @@
+---
+import { SOCIALS } from "../config";
+import LinkButton from "./LinkButton.astro";
+import { Icon } from "astro-icon/components";
+export interface Props {
+  centered?: boolean;
+}
+
+const { centered = true } = Astro.props;
+---
+
+<div class={`social-icons ${centered ? "flex" : ""}`}>
+  {
+    SOCIALS.filter((social) => social.active).map((social) => (
+      <LinkButton
+        href={social.href}
+        target="_blank"
+        className="link-button"
+        title={social.linkTitle}
+      >
+        <Icon
+          class="h-5 w-5"
+          aria-hidden="true"
+          focusable="false"
+          name={social.icon}
+        />
+      </LinkButton>
+    ))
+  }
+</div>
+
+<style>
+  .social-icons {
+    @apply flex-wrap justify-center gap-1;
+  }
+  .link-button {
+    @apply p-2 hover:rotate-6 sm:p-1;
+  }
+</style>

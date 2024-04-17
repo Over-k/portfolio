@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Footer from "../components/Footer.astro";
+import { ReposData } from "../constants";
+import GithubRepoCard from "../components/GithubRepoCard.astro";
+---
+
+<Layout title="Khalid Ait miloud | Works">
+  <!-- <Header /> -->
+  <Breadcrumbs />
+  <main id="main-content">
+    <section id="works">
+      {
+        ReposData.map(({ name, html_url, description, language }) => (
+          <GithubRepoCard
+            name={name}
+            html_url={html_url}
+            description={description}
+            language={language}
+          />
+        ))
+      }
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== works Section ===== */
+  #works {
+    @apply flex flex-wrap mb-1 ml-1 pb-12 pt-12;
+  }
+</style>
+../constants/repositories.json

@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Footer from "../components/Footer.astro";
+import { PostsData } from "../constants";
+import PostCard from "../components/PostCard.astro";
+---
+
+<Layout title="Khalid Ait miloud | Posts">
+  <!-- <Header /> -->
+  <Breadcrumbs />
+  <main id="main-content">
+    <section id="posts">
+      {
+        PostsData.filter((item) => item?.cover_image)
+          .sort(() => Math.random() - 0.5)
+          .map(
+            ({
+              title,
+              cover_image,
+              url,
+              description,
+              published_at,
+              public_reactions_count,
+              comments_count,
+              reading_time_minutes,
+            }) => (
+              <PostCard
+                title={title}
+                cover_image={cover_image}
+                url={url}
+                description={description}
+                published_at={published_at}
+                public_reactions_count={public_reactions_count}
+                comments_count={comments_count}
+                reading_time_minutes={reading_time_minutes}
+              />
+            )
+          )
+      }
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== posts Section ===== */
+  #posts {
+    @apply flex flex-wrap mb-1 ml-1 pb-12 pt-12;
+  }
+</style>

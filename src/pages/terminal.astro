@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Khalid Ait miloud | Terminal">
+  <!-- <Header /> -->
+  <Breadcrumbs />
+  <main id="main-content">
+    <section id="terminal">
+      <div
+        class="code sm:w-full order-1 lg:order-2 relative rounded-lg border borderColor"
+      >
+        <div class="linear"></div>
+        <div class="px-4 lg:px-8 py-2">
+          <div class="flex flex-row space-x-2">
+            <div class="h-2 w-2 rounded-full bg-[#fa7970]"></div>
+            <div class="h-2 w-2 rounded-full bg-[#faa356]"></div>
+            <div class="h-2 w-2 rounded-full bg-[#7ce38b]"></div>
+          </div>
+        </div>
+        <div
+          class="border-t-[2px] borderColor px-4 lg:px-8 py-4 lg:py-8 overflow-hidden overflow-y-scroll w-full h-[48vh]"
+        >
+          <code class="font-mono text-xs md:text-sm lg:text-base">
+            <div class="blink">
+              <span class="mr-2">█▀█ █░█ █▀▀ █▀█ █▄▀ |</span>
+              <span class="mr-2 keyword">Khalid Ait Miloud.</span><br />
+              <span class="mr-2">█▄█ ▀▄▀ ██▄ █▀▄ █░█ |</span>
+              <span class="mr-2">
+                You can find me
+                <a class="constant" href="https://github.com/over-k">Here</a>.
+              </span><br />
+              <span class="mr-2">Enter "help" for more information.</span>
+            </div>
+            <div class="output mt-2"></div>
+            <div>
+              <span class="mr-2 keyword">root@aitmiloud ~ $</span>
+              <span class="typing-text"></span>
+              <span class="typing m-[-6px]">|</span>
+            </div>
+          </code>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== terminal Section ===== */
+  #terminal {
+    @apply sm:pb-12 sm:pt-12  pb-12 pt-12;
+  }
+
+  .code {
+    background: radial-gradient(ellipse at 0% 0%, #bf398910 0, transparent 75%),
+      radial-gradient(ellipse at 30% 0%, #096bde10 0, transparent 75%);
+    font-family:
+      ui-monospace,
+      SFMono-Regular,
+      SF Mono,
+      Menlo,
+      Consolas,
+      Liberation Mono,
+      monospace;
+    box-shadow: 0px 3px 6px 0px #424a531f;
+  }
+  .linear {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(var(--color-text-base)) 20%,
+      transparent 60%
+    );
+    opacity: 0.4;
+  }
+  .code code {
+  }
+  .borderColor {
+    border-color: var(--color-border);
+  }
+  .keyword {
+    color: var(--color-pretty-syntax-keyword);
+  }
+  .constant {
+    color: var(--color-pretty-syntax-constant);
+  }
+  .entity {
+    color: var(--color-pretty-syntax-entity);
+  }
+  .string {
+    color: var(--color-pretty-syntax-string);
+    margin: -6px;
+  }
+  .variable {
+    color: var(--color-pretty-syntax-variable);
+  }
+  .typing {
+    opacity: 0;
+    color: var(--color-pretty-syntax-keyword);
+    animation: blink 1s ease-in-out infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 1;
+    }
+  }
+</style>
+<script>
+  import "../js/terminal";
+</script>

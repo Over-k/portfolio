@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Footer from "../components/Footer.astro";
+import Socials from "../components/Socials.astro";
+---
+
+<Layout title="Find me ">
+  <!-- <Header /> -->
+  <Breadcrumbs />
+  <main id="main-content">
+    <section id="contacts">
+      <Socials centered />
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== contacts Section ===== */
+  #contacts {
+    @apply sm:pb-12 sm:pt-12  pb-12 pt-12;
+  }
+</style>
